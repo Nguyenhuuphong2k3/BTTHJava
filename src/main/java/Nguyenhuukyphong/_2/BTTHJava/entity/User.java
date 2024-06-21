@@ -1,8 +1,7 @@
 package Nguyenhuukyphong._2.BTTHJava.entity;
 
-import Nguyenhuukyphong._2.BTTHJava.validator.annotation.ValidUsername;
+import Nguyenhuukyphong._2.BTTHJava.Validator.annotation.ValidUsername;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -32,7 +31,6 @@ public class User {
 
     @Column(name = "email", length = 50)
     @Size(max = 50, message = "Email must be less than 50 characters")
-    @Email(message = "Email should be valid")
     private String email;
 
     @Column(name = "name", length = 50, nullable = false)
@@ -42,10 +40,11 @@ public class User {
 
     @ManyToMany
     @JoinTable(name = "user_role",
-    joinColumns = @JoinColumn(name = "user_id"),
-    inverseJoinColumns = @JoinColumn(name = "role_id"))
+               joinColumns = @JoinColumn(name = "user_id"),
+                inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Book> books = new ArrayList<>();
 }
+

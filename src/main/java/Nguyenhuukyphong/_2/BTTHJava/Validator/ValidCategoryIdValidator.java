@@ -1,13 +1,14 @@
-package Nguyenhuukyphong._2.BTTHJava.validator;
+package Nguyenhuukyphong._2.BTTHJava.Validator;
 
+
+import Nguyenhuukyphong._2.BTTHJava.Validator.annotation.ValidCategoryId;
 import Nguyenhuukyphong._2.BTTHJava.entity.Category;
-import Nguyenhuukyphong._2.BTTHJava.validator.annotation.ValidCategoryId;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
 public class ValidCategoryIdValidator implements ConstraintValidator<ValidCategoryId, Category> {
     @Override
-    public boolean isValid(Category category, ConstraintValidatorContext context) {
-        return category != null && category.getId() != null;
+    public boolean isValid(Category category, ConstraintValidatorContext context){
+        return category != null && category.getId() != null ;
     }
 }

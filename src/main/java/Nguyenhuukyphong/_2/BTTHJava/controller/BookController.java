@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/books")
 public class BookController {
+
     @Autowired
     private BookService bookService;
 
@@ -28,21 +30,19 @@ public class BookController {
         return "book/list";
     }
 
-    @GetMapping("add")
-    public String addBookForm(Model model) {
+    @GetMapping("/add")
+    public String addBookForm(Model model){
         model.addAttribute("book", new Book());
-        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("category", categoryService.getAllCategories());
         return "book/add";
     }
 
     @PostMapping("/add")
-    public String addBook(@Valid @ModelAttribute("book") Book book, BindingResult bindingResult, Model model) {
-        //Trường hợp có lỗi ràng buộc thì trả lại view add
-        if(bindingResult.hasErrors()) {
-            model.addAttribute("categories", categoryService.getAllCategories());
+    public String addBook(@Validated @ModelAttribute("book") Book book, BindingResult bindingResult, Model model){
+        if (bindingResult.hasErrors()){
+            model.addAttribute("category", categoryService.getAllCategories());
             return "book/add";
         }
-
         bookService.addBook(book);
         return "redirect:/books";
     }
@@ -51,10 +51,8 @@ public class BookController {
     public String editBookForm(@PathVariable("id") Long id, Model model) {
         Book book = bookService.getBookById(id);
         if (book == null) {
-
             return "redirect:/books";
         }
-
         model.addAttribute("book", book);
         model.addAttribute("categories", categoryService.getAllCategories());
         return "book/edit";
@@ -88,4 +86,7 @@ public class BookController {
         return "redirect:/books";
     }
 
+
+
 }
+

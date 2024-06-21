@@ -1,5 +1,6 @@
 package Nguyenhuukyphong._2.BTTHJava.Utils;
 
+
 import Nguyenhuukyphong._2.BTTHJava.services.CustomUserDetailService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,7 +38,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf(csrf -> csrf.disable())
+        return http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers( "/css/**", "/js/**", "/", "/register", "/error")
                         .permitAll()

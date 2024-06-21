@@ -1,5 +1,6 @@
 package Nguyenhuukyphong._2.BTTHJava.services;
 
+
 import Nguyenhuukyphong._2.BTTHJava.entity.Book;
 import Nguyenhuukyphong._2.BTTHJava.repository.IBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Service
 public class BookService {
+
     @Autowired
     private IBookRepository bookRepository;
 
@@ -24,11 +26,11 @@ public class BookService {
         bookRepository.save(book);
     }
 
-    public void updateBook(Book book) {
-        bookRepository.save(book);
-    }
-
     public void deleteBook(Long id) {
         bookRepository.deleteById(id);
+    }
+
+    public void updateBook(Book book) {
+        bookRepository.save(book);
     }
 }

@@ -1,6 +1,7 @@
-package Nguyenhuukyphong._2.BTTHJava.validator.annotation;
+package Nguyenhuukyphong._2.BTTHJava.Validator.annotation;
 
-import Nguyenhuukyphong._2.BTTHJava.validator.ValidUsernameValidator;
+
+import Nguyenhuukyphong._2.BTTHJava.Validator.ValidUsernameValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
